@@ -1,0 +1,23 @@
+title Untitled
+
+Browser->Server: GET https://fullstack-exampleapp.herokuapp.com/spa
+note right of Server: Returns the file "spa.html"
+Server->Browser: spa.html
+note left of Browser: Reads HTML and prepares DOM
+note left of Browser: Reads link tag with refernce to "main.css"
+Browser->Server: GET https://fullstack-exampleapp.herokuapp.com/main.css
+note right of Server: Returns the file "main.css"
+Server->Browser: main.css
+note left of Browser: Reads HTML Document, prepares DOM
+note left of Browser: Reads script tag with reference to "spa.js"
+Browser->Server: GET https://fullstack-exampleapp.herokuapp.com/spa.js
+note right of Server: Returns the file "spa.js"
+Server->Browser: spa.js
+note left of Browser: Executes JS code
+note left of Browser: GET request for "/data.json" sent through JS code via xhttp
+Browser->Server: GET https://fullstack-exampleapp.herokuapp.com/data.json
+note right of Server: Returns the file "data.json"
+Server->Browser: data.json
+note left of Browser: Event handler onreadystatechange for xhttp calls redrawNotes function
+note left of Browser: List of notes re-rendered with data from JSON response
+note left of Browser: window.onload event handler in spa.js sets onsubmit event handler on "notes_form" div

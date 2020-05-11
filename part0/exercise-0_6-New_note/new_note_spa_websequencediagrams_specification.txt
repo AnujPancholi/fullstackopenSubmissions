@@ -1,0 +1,12 @@
+title Untitled
+
+note left of Browser: Some new text entered in textbox of form "notes_form"
+note left of Browser: Submit button of form is clicked
+note left of Browser: onsubmit event handler of "notes_from" invoked
+note left of Browser: new note object pushed in notes array
+note left of Browser: redrawNotes function called, list re-rendered
+note left of Browser: POST request made to server with new note object in payload
+Browser->Server: POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+note right of Server: Persists new note in all notes
+note right of Server: new note will now be included in subsequent calls of data.json
+

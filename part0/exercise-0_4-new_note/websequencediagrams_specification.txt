@@ -1,0 +1,29 @@
+title Untitled
+
+Browser->Server: POST https://fullstack-exampleapp.herokuapp.com/new_note
+note right of Server: Persists the new note
+Server->Browser: Response with HTTP Code 302
+note left of Browser: Reads empty response with HTTP response code 302
+note left of Browser: Reads location header of response, redirects to location
+Browser->Server: GET https://fullstack-exampleapp.herokuapp.com/notes
+note right of Server: Returns the file "notes.html"
+Server->Browser: notes.html
+note left of Browser: Reads HTML Document, prepares DOM
+note left of Browser: Reads link tag with reference to "main.css"
+Browser->Server: GET https://fullstack-exampleapp.herokuapp.com/main.css
+note right of Server: Returns the file "main.css"
+Server->Browser: main.css
+note left of Browser: Includes main.css, renders page accordingly
+note left of Browser: Reads script tag with reference to "main.js"
+Browser->Server: GET https://fullstack-exampleapp.herokuapp.com/main.js
+note right of Server: Returns the file "main.js"
+Server->Browser: main.js
+note left of Browser: Executes Javascript code
+note left of Browser: Makes request for path '/data.json' via xhttp in JS code
+Browser->Server: GET https://fullstack-exampleapp.herokuapp.com/data.json
+note right of Server: Returns the file "data.json"
+Server->Browser: data.json
+note left of Browser: Event handler function onreadystatechange for the request gets triggered
+note left of Browser: JS code reads array of objects in JSON response
+note left of Browser: New list item for every note created and appended as childern of unordered list
+note left of Browser: Unordered list appended as child of notes div in DOM
