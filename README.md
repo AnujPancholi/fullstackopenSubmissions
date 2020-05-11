@@ -1,5 +1,5 @@
 # fullstackopenSubmissions
-Submissions for Full Stack Open 2020 course
+Submissions for the Full Stack Open 2020 course
 
 The submissions for all the parts will be put in this one repository.
 
