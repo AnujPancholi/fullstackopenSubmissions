@@ -3,7 +3,7 @@ For this part, exercises 0.1-0.3 are *not* to be submitted to Github, so they ar
 
 For exercises 0.4-0.6, each exercise is submitted in its own directory, with the following naming convention:
 
-> exercise-<exercise number with '.' replaced with underscore>-<exercise text with spaces replaced by underscore>
+> exercise-*exercise number with '.' replaced with underscore*-*exercise text with spaces replaced by underscore*
 
 For example, for 0.4, which was described on the course website as "0.4: new note", so, the name for its directory would be "exercise-0_4-new_note".
 
