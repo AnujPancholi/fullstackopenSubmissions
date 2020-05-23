@@ -13,7 +13,7 @@ I have refactored the code and made 4 components, App, Courses, Header and Total
 **NOTE:** The course said that we have to make a component "**Content**" but, in my haste, and perhaps, nervousness, I named it "**Courses**" in the submission commit of 1.1, but it functions exactly in the way that is asked in the course. I have corrected this and hope it won't be an issue.
 
 
-##Exercise 1.2
+## Exercise 1.2
 Introduced the Part.js component, imported and used by the Content component, as asked in the exercise. Also, I have refactored a little to put the App.js component in the root dir. 
 
 
