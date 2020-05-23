@@ -3,7 +3,7 @@ import {
   Courses,
   Header,
   Total
-} from './index.js';
+} from './components/index.js';
 
 
 
