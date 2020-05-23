@@ -2,7 +2,7 @@ import React from 'react';
 import Part from "./Part.js";
 
 
-const Courses = (props) => {
+const Content = (props) => {
 
   let partsJsx = props.parts.map(part => (<Part name={part.name} excerciseCount={part.excerciseCount}/>)).reduce((acc,curr) => [acc,curr]);
   
@@ -11,4 +11,4 @@ const Courses = (props) => {
     </React.Fragment>);
 }
 
-export default Courses;
+export default Content;

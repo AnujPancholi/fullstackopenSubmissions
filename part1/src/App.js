@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Courses,
+  Content,
   Header,
   Total
 } from './components/index.js';
@@ -30,7 +30,7 @@ const App = () => {
   return (
     <div>
       <Header course={course}/>
-      <Courses parts={parts}/>
+      <Content parts={parts}/>
       <Total parts={parts}/>
     </div>
   )
