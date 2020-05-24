@@ -24,5 +24,8 @@ If I may say this, the way that I built the application in the first place was p
 ## Exercise 1.4
 Now I am asked to make an array similar to what I made earlier, because I knew that when you have a number of homogeneous objects and you have to do the same operations on each of them, the best way to deal with them is to use a list/array. So, I copied the given parts array and refactored to make it work. Notice that I only changed the App component and then replaced the "exercises" property of each object with "exerciseCount", because if I kept the original property in the objects, I would have to make the corresponding changes in the other components, but this way, I only have to change the App component. In a prod scenario, this may be seen as tech debt but I guess for the purpose of the exercise, it is fine.
 
+## Exercise 1.5
+Copied the courses object into my code and refactored the App component to make it work. Again, not the most efficient way to do things, but I had to make very few changes to make the whole thing work.
+
 
 ---
