@@ -14,7 +14,9 @@ I have refactored the code and made 4 components, App, Courses, Header and Total
 
 
 ## Exercise 1.2
-Introduced the Part.js component, imported and used by the Content component, as asked in the exercise. Also, I have refactored a little to put the App.js component in the root dir. 
+Introduced the Part.js component, imported and used by the Content component, as asked in the exercise. Also, I have refactored a little to put the App.js component in the root dir.
+
+**NOTE:** There was a typo in the code due to which the output was incorrect, which was corrected after the submission commit. I have created another submission commit for this correction, Please take that as the submission for this exercise.
 
 
 ---
