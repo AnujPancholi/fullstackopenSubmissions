@@ -19,7 +19,10 @@ Introduced the Part.js component, imported and used by the Content component, as
 **NOTE:** There was a typo in the code due to which the output was incorrect, which was corrected after the submission commit. I have created another submission commit for this correction, Please take that as the submission for this exercise.
 
 ## Exercise 1.3
-If I may say this, the way that I built the application in the first place was perhaps more preferable than what is being asked here, as I have a bit of experience working with Javascript in Node.js. Nonetheless, I made the changes in the App component. Also, if I may say so, "exercises" is not as descript a variable name as "exerciseCount", as it may well be referring to an array of objects, each of which may represent an exercise, whereas "exerciseCount" clearly implies a number. 
+If I may say this, the way that I built the application in the first place was perhaps more preferable than what is being asked here, as I have a bit of experience working with Javascript in Node.js. Nonetheless, I made the changes in the App component. Also, if I may say so, "exercises" is not as descript a variable name as "exerciseCount", as it may well be referring to an array of objects, each of which may represent an exercise, whereas "exerciseCount" clearly implies a number.
+
+## Exercise 1.4
+Now I am asked to make an array similar to what I made earlier, because I knew that when you have a number of homogeneous objects and you have to do the same operations on each of them, the best way to deal with them is to use a list/array. So, I compied the given parts array and refactored to make it work. Notice that I only changed the App component and then replaced the "exercises" property of each object with "exerciseCount", because if I kept the original property in the objects, I would have to make the corresponding changes in the other components, but this way, I only have to change the App component. In a prod scenario, this may be seen as tech debt but I guess for the purpose of the exercise, it is fine.
 
 
 ---
