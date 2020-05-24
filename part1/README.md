@@ -27,5 +27,7 @@ Now I am asked to make an array similar to what I made earlier, because I knew t
 ## Exercise 1.5
 Copied the courses object into my code and refactored the App component to make it work. Again, not the most efficient way to do things, but I had to make very few changes to make the whole thing work.
 
+**NOTE:** I was under the impression that the rest of the exercises in part 1 are going to be increments and additions in the same app, so the part1 directory itself contained the project. However, it seems that the later parts would need a new app altogether so, I'm putting the first app in a separate directory within part1 and will put the other practice app in another directory.
+
 
 ---
