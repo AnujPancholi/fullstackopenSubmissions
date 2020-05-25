@@ -53,6 +53,11 @@ Saw this coming as well, so started with this approach. Changed the text from "N
 
 Also, in evaluating whether stats should be displayed or not, I have added a flag in the calculated properties in the statsList supplied to the statistics component, to check if only the non-calculated (gathered) properties have truthy, non-zero values (in this case it's only the feedback votes). This is done becasue we may have to add some of the calculated values that may evaluate to some non-zero, truthy value even when there are no feedback votes (for instance, "positive" will initially have "0%" as its value, which is a truthy string).
 
+## Exercise 1.10
+I had also seen this beforehand, so I had already separated these components, however, I have not separated the Statistic (singular) component in its own file, and have defined it in the same file as the Statistics (plural) component, because I cannot think of this component being of use anywhere else.
+
+**NOTE:** The array of objects supplied to the Statistics component is being reduced to the required jsx, so, if more stats are added, no changes will be required here. I learned how to do this off Stackoverflow and I hope I get extra marks for this.
+
 
 
 ---
