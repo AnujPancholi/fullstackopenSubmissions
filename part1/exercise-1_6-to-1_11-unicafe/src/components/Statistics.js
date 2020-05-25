@@ -11,7 +11,7 @@ const Statistic = ({name,stat}) => {
 const Statistics = ({statList}) => {
   return (<div>
     <TitleContainer text="statistics" />
-    {statList.some(item =>  !item.isCalculatedValue && item.stat>0) ? statList.map(item => (<Statistic name={item.name} stat={item.stat} />)).reduce((statsJsx,currentStatJsx) => [statsJsx,currentStatJsx]) : (<p>NO STATS AVAILABLE</p>)}
+    {statList.some(item =>  !item.isCalculatedValue && item.stat>0) ? statList.map(item => (<Statistic name={item.name} stat={item.stat} />)).reduce((statsJsx,currentStatJsx) => [statsJsx,currentStatJsx]) : (<p>No feedback given</p>)}
     </div>)
 }
 
