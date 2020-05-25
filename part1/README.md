@@ -45,6 +45,9 @@ To avoid the hassles mentioned above, I decided to not make the calculated value
 
 I then concatenated the gathered values with the calculated ones to supply to the Statistics component, and it worked just fine.
 
+## Exercise 1.8
+Saw this coming, so had alread separated this into a new component. Was going to name it StatsPanel, but when I saw that there is an exercise which asks for such a component and has named it "Statistics", changed it.
+
 
 
 ---
