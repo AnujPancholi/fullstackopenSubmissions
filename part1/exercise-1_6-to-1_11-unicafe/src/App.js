@@ -34,11 +34,40 @@ const App = () => {
   const additionalStatsList = [{
     name: "all",
     getValue: () => feedbackList.reduce((total,item) => total+=item.count,0)
+  },{
+    name: "average",
+    getValue: () => {
+        let totalWeight=0,totalCount=0;
+        feedbackList.forEach(item => {
+            totalCount+=item.count;
+            totalWeight+=item.count*item.weight;
+        })
+        return totalCount===0 ? 0 : (totalWeight/totalCount);
+    }
+  },{
+    name: "positive",
+    getValue: () => {
+        const positiveStatusNameSet = new Set(["good"]);
+        let totalCount=0,positiveCount=0;
+        feedbackList.forEach(item => {
+            if(positiveStatusNameSet.has(item.name)){
+                positiveCount+=item.count;
+            }
+            totalCount+=item.count;
+        })
+
+        return `${totalCount===0 ? 0 : (positiveCount/totalCount)*100}%`; 
+    }
   }]
 
-  const statList = feedbackList.map(item => ({
+  const statList = feedbackList.concat(additionalStatsList.map(item => ({
     name: item.name,
-    stat: item.count
+    count: item.getValue(),
+    isCalculatedValue: true
+  }))).map(item => ({
+    name: item.name,
+    stat: item.count,
+    isCalculatedValue: item.isCalculatedValue || false
   }));
   
 
