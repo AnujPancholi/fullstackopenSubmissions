@@ -29,5 +29,8 @@ Copied the courses object into my code and refactored the App component to make 
 
 **NOTE:** I was under the impression that the rest of the exercises in part 1 are going to be increments and additions in the same app, so the part1 directory itself contained the project. However, it seems that the later parts would need a new app altogether so, I'm putting the first app in a separate directory within part1 and will put the other practice app in another directory.
 
+## Exercise 1.6
+Copied the App component starter file and made the app as shown in the given screenshot. Could have capitalized the titles, etc. but wanted it to resemble the screenshot as closely as it could. Working with the data in the form of an array of objects, but have kept the state in parts (just like in the starting code) and not in a single object because the count of every vote is updated independently. There might be a few extra variables that are not being used because I looked ahead to the subsequent exercises and was playing around with approaches to solve those.  
+
 
 ---
