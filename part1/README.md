@@ -61,6 +61,9 @@ I had also seen this beforehand, so I had already separated these components, ho
 ## Exercise 1.11
 Changed the statistics component to render an HTML table, and the singular Statistic component will be a table row, containing two table data elements each. The app doesn't look very much different, but inspecting elements via Chrome dev tools confirmed it - it is indeed an HTML table.
 
+## Exercise 1.12
+Created the app, added a button, and supplied a reference to a function that updates the state with a random selected index, generating a value between 0 and the final index of the anecdotes array, inclusive. Changed the given code in a form I found more comfortable to work with.
+
 
 
 ---
