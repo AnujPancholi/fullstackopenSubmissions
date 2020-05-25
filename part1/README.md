@@ -58,6 +58,9 @@ I had also seen this beforehand, so I had already separated these components, ho
 
 **NOTE:** The array of objects supplied to the Statistics component is being reduced to the required jsx, so, if more stats are added, no changes will be required here. I learned how to do this off Stackoverflow and I hope I get extra marks for this.
 
+## Exercise 1.11
+Changed the statistics component to render an HTML table, and the singular Statistic component will be a table row, containing two table data elements each. The app doesn't look very much different, but inspecting elements via Chrome dev tools confirmed it - it is indeed an HTML table.
+
 
 
 ---
