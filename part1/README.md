@@ -48,6 +48,11 @@ I then concatenated the gathered values with the calculated ones to supply to th
 ## Exercise 1.8
 Saw this coming, so had alread separated this into a new component. Was going to name it StatsPanel, but when I saw that there is an exercise which asks for such a component and has named it "Statistics", changed it.
 
+## Exercise 1.9
+Saw this coming as well, so started with this approach. Changed the text from "NO STATS AVAILABLE" to "No feedback given", as presented in the given screenshot and made the commit. 
+
+Also, in evaluating whether stats should be displayed or not, I have added a flag in the calculated properties in the statsList supplied to the statistics component, to check if only the non-calculated (gathered) properties have truthy, non-zero values (in this case it's only the feedback votes). This is done becasue we may have to add some of the calculated values that may evaluate to some non-zero, truthy value even when there are no feedback votes (for instance, "positive" will initially have "0%" as its value, which is a truthy string).
+
 
 
 ---
