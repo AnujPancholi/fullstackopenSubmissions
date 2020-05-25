@@ -4,7 +4,7 @@ import TitleContainer from "./TitleContainer.js";
 
 const Statistic = ({name,stat}) => {
   return (<React.Fragment>
-      <p>{name}:&#9; {stat}</p>
+      <p>{name}:&#9;{stat}</p>
     </React.Fragment>)
 }
 
