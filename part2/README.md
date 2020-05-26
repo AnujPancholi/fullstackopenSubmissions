@@ -5,6 +5,12 @@ For this part, I have chosen to revise the naming convention of the directories 
 
 For instance, the first exercise is titled "2.1: course contents step6", so the directory containing this app will be named *app1-course_contents*.
 
+Like in part 1, the convention for any commit meant as a submission for a particular exercise will be the same:
+
+> feat: SUBMISSION - <exercise number\> - <description of exercise solution\>
+
+In the last part, a few commits were made for an exercise mistakenly, so submission commits for the same exercise were made again as corrections. So, if any commits are observed with the same exercise number, please consider the lastest one as the answer. I am aware that the course does not require separate commits for each exercise and only needs the final app, but still it was necessary to clarify this.
+
 ## Exercise 2.1
 Since this was the continuation of the course contents app in part 1, I decided to modify my own code, so I copied everything (minus node_modules) to the new directory for this app, and edited from there. The `Course` component is made separately, and imports some supporting components as well.
 
