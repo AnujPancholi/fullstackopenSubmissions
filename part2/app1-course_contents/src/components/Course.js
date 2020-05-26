@@ -3,12 +3,16 @@ import TitleContainer from "./TitleContainer.js";
 import Part from "./Part.js";
 
 
-const Course = ({course}) => {
 
-  return course.parts.reduce((jsx,part) => {
+const Course = ({course}) => {
+	let totalExerciseCount = 0;
+  const courseJsx = course.parts.reduce((jsx,part) => {
+  	totalExerciseCount+=part.exercises;
     jsx.push(<Part key={part.id} name={part.name} exercises={part.exercises} />);
     return jsx;
   },[<TitleContainer key={-1} text={course.name} />]);
+  courseJsx.push(<Part key={0} name="Total" exercises={totalExerciseCount} className="part-bold"/>);
+  return courseJsx;
 }
 
 

@@ -1,7 +1,9 @@
 import React from "react";
+import './Part.css';
 
-const Part = ({name,exercises}) => {
-  return (<p>{name}: {exercises}</p>);
+const Part = ({name,exercises,className}) => {
+	const cssClass = className || "part-default";
+  return (<p className={cssClass}>{name}: {exercises}</p>);
 }
 
 
