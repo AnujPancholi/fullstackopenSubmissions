@@ -2,7 +2,8 @@ import React,{useState} from 'react';
 import logo from './logo.svg';
 import {
   Button,
-  AnecdotesDisplay
+  AnecdotesDisplay,
+  LeaderboardDisplay
 } from './components/index.js';
 
 const anecdotes = [{
@@ -48,9 +49,11 @@ const App = (props) => {
 
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       <AnecdotesDisplay anecdote={{text: anecdotes[selected].text, voteCount: voteCounts[selected]}} />
       <Button label="Upvote" handleClick={recordUpvoteForSelectedAnecdote} />
       <Button label="Change" handleClick={setRandomIndexInState} />
+      <LeaderboardDisplay anecdotes={anecdotes} votesList={voteCounts} />
     </div>
   )
 }
