@@ -69,5 +69,8 @@ At first, I though of making storing an array of objects in the state with reach
 
 Also, I noticed something interesting in debugging - for every state change, my App component was being re-rendered twice. I though maybe I was mutating the state in the component without using the setter function, but that wasn't the case. After doing a lot of debugging and research I found [this article](https://mariosfakiolas.com/blog/my-react-components-render-twice-and-drive-me-crazy/) which says it could be because I'm running it in the dev environment enclosed in <React\.StrictMode\>, So, I'm choosing to ignore it.
 
+## Exercise 1.14
+Added a component to which I'm lifting the votesCount array and the array of anecdotes (which is stored as a global in the App component), and it uses that information to display the anecdotes with max upvotes. Note that if there are two or more anecdotes with the same number of votes, it will display both. I've used a rather inefficient method to find the top voted anecdotes which would not do well if used for a million anecdotes, but for the purpose of the exercise, it does what the exercise asks of it. 
+
 
 ---
