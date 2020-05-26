@@ -44,9 +44,7 @@ const App = (props) => {
     setVoteCounts(updatedVoteCounts);
   }
 
-  // console.log(`Votes:`, voteCounts);
-  // console.log(`Selected: `,selected);
-  console.log("RENDER");
+  
 
   return (
     <div>
