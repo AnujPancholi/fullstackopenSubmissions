@@ -1,11 +1,12 @@
 import React from 'react';
 
-const AnecdoteDisplay = ({anecdote}) => {
+const AnecdotesDisplay = ({anecdote}) => {
   return (<React.Fragment>
     <p>
-      {anecdote}
+      {anecdote.text}
     </p>
+    <p>{anecdote.voteCount} votes</p>
   </React.Fragment>)
 }
 
-export default AnecdoteDisplay;
+export default AnecdotesDisplay;
