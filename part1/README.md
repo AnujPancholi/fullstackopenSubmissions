@@ -64,6 +64,10 @@ Changed the statistics component to render an HTML table, and the singular Stati
 ## Exercise 1.12
 Created the app, added a button, and supplied a reference to a function that updates the state with a random selected index, generating a value between 0 and the final index of the anecdotes array, inclusive. Changed the given code in a form I found more comfortable to work with.
 
+## Exercise 1.13
+At first, I though of making storing an array of objects in the state with reach object having a "text" field which would contain the anecdote string and a "votesCount" field to store the nubmer of votes. However, to update the states without mutating the original state, I would have to make a deep copy, so I did away with that idea. So, I took the course's advice and built an array where each element would be an int storing the upvote count for the anecdote on that index, and it worked. Added a new button and supplied it with an event handler to record the upvote.
+
+Also, I noticed something interesting in debugging - for every state change, my App component was being re-rendered twice. I though maybe I was mutating the state in the component without using the setter function, but that wasn't the case. After doing a lot of debugging and research I found [this article](https://mariosfakiolas.com/blog/my-react-components-render-twice-and-drive-me-crazy/) which says it could be because I'm running it in the dev environment enclosed in <React\.StrictMode\>, So, I'm choosing to ignore it.
 
 
 ---
