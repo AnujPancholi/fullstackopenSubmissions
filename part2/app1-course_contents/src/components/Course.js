@@ -5,9 +5,10 @@ import Part from "./Part.js";
 
 
 const Course = ({course}) => {
-	let totalExerciseCount = 0;
+	// let totalExerciseCount=0;
+	let totalExerciseCount = course.parts.reduce((total,part) => total+part.exercises,0);
   const courseJsx = course.parts.reduce((jsx,part) => {
-  	totalExerciseCount+=part.exercises;
+  	// totalExerciseCount+=part.exercises;
     jsx.push(<Part key={part.id} name={part.name} exercises={part.exercises} />);
     return jsx;
   },[<TitleContainer key={-1} text={course.name} />]);
