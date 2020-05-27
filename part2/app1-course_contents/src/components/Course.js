@@ -3,7 +3,7 @@ import TitleContainer from "./TitleContainer.js";
 import Part from "./Part.js";
 
 
-
+//this is indeed a separate component inported by the root component
 const Course = ({course}) => {
 	// let totalExerciseCount=0;
 	let totalExerciseCount = course.parts.reduce((total,part) => total+part.exercises,0);
