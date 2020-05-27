@@ -47,4 +47,9 @@ In the above code, if you comment the first `reduce` and uncomment the two comme
 ## Exercise 2.4
 Modified the `App` component to render multiple `Course` components depending on the input, which is an array of courses. Used reduce again, which is a very powerful higher-order function in the `Array` prototype in JS.
 
+## Exercise 2.5
+Well, `Courses` was already separated as a component in a different file "Components.js" in a directory "components" in which all the components other than the root component (`App`) exist in their own files.
+
+I still had to make a separate commit for this, so I just added a comment in "Courses.js" and made the commit.
+
 ---
