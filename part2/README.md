@@ -20,3 +20,27 @@ All was well in this exercise, until I noticed an issue - the `Courses` componen
 
 ## Exercise 2.2
 Added up the exercises into a single variable `totalExerciseCount` and used the existing Part component to render it after the given parts. Made it bold by including a new file "Part.css" in the `Part` component and supplying the css class in the `Part` as a prop. Also learned via Google that in jsx, the "class" attribute is written as "className", I'm guessing this is done to avoid the clash with the `class` keyword.
+
+## Exercise 2.3
+I was already using reduce (sort of) in the `Course` component but that was to reduce the array of JS objects into the jsx that I needed to form the component, and in the callback funtion that is supplied in `reduce` I was simply adding the value of each of the `exercises` variables in a variable called `totalExerciseCount`, so, both the jsx and the total count were caculated with just one `reduce`.
+
+Since this exercise explicitly requires calculation of the total using `reduce`, I havd added another `reduce` to calculate that total, but I have not removed my first approach, I've just commented it so this approach could be emphasised.
+
+I'll add that snippet of code here so it can be contrasted:
+
+`const Course = ({course}) => {
+	// let totalExerciseCount=0;
+	let totalExerciseCount = course.parts.reduce((total,part) => total+part.exercises,0);
+  const courseJsx = course.parts.reduce((jsx,part) => {
+  	// totalExerciseCount+=part.exercises;
+    jsx.push(<Part key={part.id} name={part.name} exercises={part.exercises} />);
+    return jsx;
+  },[<TitleContainer key={-1} text={course.name} />]);
+  courseJsx.push(<Part key={0} name="Total" exercises={totalExerciseCount} className="part-bold"/>);
+  return courseJsx;
+}`
+
+In the above code, if you comment the first `reduce` and uncomment the two commented lines, it will still work. This component that uses `reduce` twice is not very efficient because reduce performs a pass of the whole array once, so this would involve two passes, whereas the first approach uses just one.
+
+
+---
