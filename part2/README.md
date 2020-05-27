@@ -28,7 +28,8 @@ Since this exercise explicitly requires calculation of the total using `reduce`,
 
 I'll add that snippet of code here so it can be contrasted:
 
-```const Course = ({course}) => {
+```
+const Course = ({course}) => {
 	// let totalExerciseCount=0;
 	let totalExerciseCount = course.parts.reduce((total,part) => total+part.exercises,0);
   const courseJsx = course.parts.reduce((jsx,part) => {
