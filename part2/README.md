@@ -44,5 +44,7 @@ const Course = ({course}) => {
 
 In the above code, if you comment the first `reduce` and uncomment the two commented lines, it will still work. This component that uses `reduce` twice is not very efficient because reduce performs a pass of the whole array once, so this would involve two passes, whereas the first approach uses just one.
 
+## Exercise 2.4
+Modified the `App` component to render multiple `Course` components depending on the input, which is an array of courses. Used reduce again, which is a very powerful higher-order function in the `Array` prototype in JS.
 
 ---
