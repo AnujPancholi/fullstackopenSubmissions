@@ -28,7 +28,7 @@ Since this exercise explicitly requires calculation of the total using `reduce`,
 
 I'll add that snippet of code here so it can be contrasted:
 
-`const Course = ({course}) => {
+```const Course = ({course}) => {
 	// let totalExerciseCount=0;
 	let totalExerciseCount = course.parts.reduce((total,part) => total+part.exercises,0);
   const courseJsx = course.parts.reduce((jsx,part) => {
@@ -38,7 +38,8 @@ I'll add that snippet of code here so it can be contrasted:
   },[<TitleContainer key={-1} text={course.name} />]);
   courseJsx.push(<Part key={0} name="Total" exercises={totalExerciseCount} className="part-bold"/>);
   return courseJsx;
-}`
+}
+```
 
 In the above code, if you comment the first `reduce` and uncomment the two commented lines, it will still work. This component that uses `reduce` twice is not very efficient because reduce performs a pass of the whole array once, so this would involve two passes, whereas the first approach uses just one.
 
