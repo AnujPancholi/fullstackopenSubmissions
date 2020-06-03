@@ -64,4 +64,11 @@ Regarding the form itself, I wanted to make the form its own component, making i
 ## Exercise 2.7
 To check whether a new name that the user tries to add already exists, I decided to make a hashset of all the names in objects of the `persons` state array. There are some array functions I could have used like `Array.find`, `Array.some` or `Array.indexOf` but I just wanted to use `Set` once, and the lookup complexity of a hashset is O(1).
 
+## Exercise 2.8
+A new part of state was added in the `App` component - `newPhoneNumber`, to store the new phone number, much like `newName`. The input for phone number was added in the `PhonebookEntryForm` component and the on `onChange` handler for that input was set as a new function to make the necessary change in the state with `newPhoneNumber`. 
+
+I also added a few validations, such as checking if the name is empty, and a regex validation that the number must be a string consisting of digits with any number of hyphens in the middle.
+
+Also, since every listinig was not standing out well, I added a border on the `Listing` container div and a line break after each listing (still not good with CSS but this would still be OK for the exercise).
+
 ---
