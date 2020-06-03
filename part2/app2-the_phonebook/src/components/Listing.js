@@ -1,8 +1,9 @@
 import React from "react";
 
-const Listing = ({name, number}) => {
-  return (<div>
-    Name: {name}
+const Listing = ({name, phoneNumber}) => {
+  return (<div style={{border: "1px solid black"}}>
+    Name: {name}<br/>
+    Phone: {phoneNumber}
   </div>)
 }
 
