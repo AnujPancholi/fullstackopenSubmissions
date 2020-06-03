@@ -2,10 +2,12 @@ import React,{useState} from 'react';
 import './App.css';
 import getCounter from "./lib/counter.js";
 import {
-  Listing
+  Listing,
+  PhonebookEntryForm
 } from "./components/index.js"
 
 
+//to generate id for each element in a list, so as to not get a warning in the console
 const idGenerator = getCounter(1);
 
 
@@ -36,14 +38,7 @@ const App = (props) => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={submitNewName}>
-        <div>
-          name: <input onChange={handleNewNameChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PhonebookEntryForm handleOnSubmit={submitNewName} handleNewNameChange={handleNewNameChange} />
       <h2>Numbers</h2>
       <div>
         {
