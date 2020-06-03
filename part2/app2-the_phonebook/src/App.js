@@ -20,6 +20,7 @@ const App = (props) => {
   ]) 
   const [ newName, setNewName ] = useState('')
 
+  const nameSet = new Set(persons.map(person => person.name));
   
   const handleNewNameChange = (event) => {
     setNewName(event.target.value);
@@ -27,12 +28,16 @@ const App = (props) => {
 
   const submitNewName = (event) => {
     event.preventDefault();
-    const personsEntry = {
-      id: idGenerator.next(),
-      name: newName
+    if(nameSet.has(newName)){
+      window.alert(`${newName} already exists.`);
+    } else {
+      const personsEntry = {
+        id: idGenerator.next(),
+        name: newName
+      }
+      console.log(`NEW ENTRY: `,personsEntry);
+      setPersons(persons.concat(personsEntry));
     }
-    console.log(`NEW ENTRY: `,personsEntry);
-    setPersons(persons.concat(personsEntry));
   }
 
   return (
