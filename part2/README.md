@@ -61,4 +61,7 @@ The approach I decided to go with is to make a simple counter (of sorts) using a
 
 Regarding the form itself, I wanted to make the form its own component, making it as generic as possible. Each form will have a handler function for `onSubmit` which it could take as a prop - but I there was no way for me to generalize the `onChange` handlers for inputs, because the inputs could be many and of different types. So I dropped the idea of a generic form component and made a form specifically for the phonebook entry called `PhonebookEntryForm`, which would take a handler for `onSubmit` and a handler for `onChange` for the "name" field, as props. When I later have to add an input for the phone number, I could just modify it to take an extra handler for the `onChange` of the phone number.
 
+## Exercise 2.7
+To check whether a new name that the user tries to add already exists, I decided to make a hashset of all the names in objects of the `persons` state array. There are some array functions I could have used like `Array.find`, `Array.some` or `Array.indexOf` but I just wanted to use `Set` once, and the lookup complexity of a hashset is O(1).
+
 ---
