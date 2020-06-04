@@ -2,13 +2,13 @@ import React,{useState} from 'react';
 import './App.css';
 import getCounter from "./lib/counter.js";
 import {
-  Listing,
-  PhonebookEntryForm
+  PhonebookEntryForm,
+  PhonebookListingView
 } from "./components/index.js"
 
 
 //to generate id for each element in a list, so as to not get a warning in the console
-const idGenerator = getCounter(1);
+const idGenerator = getCounter(3);
 
 
 const App = (props) => {
@@ -17,6 +17,16 @@ const App = (props) => {
       id: 1,
       name: 'Arto Hellas',
       phoneNumber: "830-584-3094"
+     },
+     {
+      id: 2,
+      name: "Farto Smellas",
+      phoneNumber: "830-584-3095"
+     },
+     {
+      id: 3,
+      name: "Smarto Fellas",
+      phoneNumber: "830-584-3096"
      }
   ]);
   const [ newName, setNewName ] = useState('');
@@ -57,12 +67,7 @@ const App = (props) => {
     <div>
       <h2>Phonebook</h2>
       <PhonebookEntryForm handleOnSubmit={submitNewName} handleNewNameChange={handleNewNameChange} handleNewPhoneNumberChange={handlePhoneNumberChange} />
-      <h2>Numbers</h2>
-      <div>
-        {
-          persons.reduce((jsx,person) => jsx.concat(<React.Fragment><Listing key={person.id} name={person.name} phoneNumber={person.phoneNumber}/><br/></React.Fragment>),[])
-        }
-      </div>
+      <PhonebookListingView persons={persons} />
     </div>
   )
 }
