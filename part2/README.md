@@ -71,4 +71,15 @@ I also added a few validations, such as checking if the name is empty, and a reg
 
 Also, since every listinig was not standing out well, I added a border on the `Listing` container div and a line break after each listing (still not good with CSS but this would still be OK for the exercise).
 
+## Exercise 2.9
+My first thought was that I should separate the listings as a separate component which displays the list of name-number pairs as a collection of the existing `Listing` components (which I called `PhonebookListingView`), so I did exactly that. Then it was clear to me that this search feature and search bar was not concerned with the form that I had previously made, but should only be concerned with the new `PhonebookListingView` component, hence, I included the `input` for the search feature in this component itself. Then, by declaring a variable in the state of `PhonebookListingView` as the search string, I made that `input` a controlled component by writing a handler for the `onChange` event of that `input`. The search itself would be a case-insensitive regex search via a RegExp object, and the results should show as the search string is typed (of course this would fail for a hundered thousand or million entries but it's good enough for this exercise).
+
+There are also a few bells and whistles that show when a search string is typed, like:
+
+ - Some text appears next to the search box which says that you are viewing filtered results
+
+ - A span appears that says "Clear" which will clear the search string if clicked
+
+    
+
 ---
