@@ -5,6 +5,7 @@ import {
   PhonebookEntryForm,
   PhonebookListingView
 } from "./components/index.js"
+//app is split into several components
 
 
 //to generate id for each element in a list, so as to not get a warning in the console

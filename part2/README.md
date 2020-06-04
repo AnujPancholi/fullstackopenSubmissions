@@ -80,6 +80,8 @@ There are also a few bells and whistles that show when a search string is typed,
 
  - A span appears that says "Clear" which will clear the search string if clicked
 
-    
+
+## Exercise 2.10
+Well, the app was already split into several components, so I didn't think I could do much more than this in terms of modularization, so I just added a comment to make a new commit for this exercise, and that can be considered done.    
 
 ---
