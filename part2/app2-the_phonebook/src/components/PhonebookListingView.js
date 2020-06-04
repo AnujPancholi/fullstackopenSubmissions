@@ -22,7 +22,7 @@ const PhonebookListingView = ({persons}) => {
 		<h2>Numbers</h2>
 		<br />
 		<div>
-			Search: <input onChange={handleSearchStringChange} value={searchString} /> { searchRegex ? (<React.Fragment>(Filtered Results)<span onClick={clearSearchFilter} style={{color: "blue","text-decoration": "underline"}}>(Clear)</span></React.Fragment>) : (<React.Fragment></React.Fragment>) }
+			Search: <input onChange={handleSearchStringChange} value={searchString} /> { searchRegex ? (<React.Fragment>(Filtered Results)<span onClick={clearSearchFilter} style={{color: "blue","textDecoration": "underline"}}>(Clear)</span></React.Fragment>) : (<React.Fragment></React.Fragment>) }
 		</div>
 		<br />
       <div>
