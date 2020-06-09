@@ -1,6 +1,7 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import './App.css';
 import getCounter from "./lib/counter.js";
+import axios from "axios";
 import {
   PhonebookEntryForm,
   PhonebookListingView
@@ -13,25 +14,30 @@ const idGenerator = getCounter(3);
 
 
 const App = (props) => {
-  const [ persons, setPersons ] = useState([
-    { 
-      id: 1,
-      name: 'Arto Hellas',
-      phoneNumber: "830-584-3094"
-     },
-     {
-      id: 2,
-      name: "Farto Smellas",
-      phoneNumber: "830-584-3095"
-     },
-     {
-      id: 3,
-      name: "Smarto Fellas",
-      phoneNumber: "830-584-3096"
-     }
-  ]);
+  const [ persons, setPersons ] = useState([]);
   const [ newName, setNewName ] = useState('');
   const [newPhoneNumber,setNewPhoneNumber] = useState('');
+
+  useEffect(() => {
+    (async() => {
+    console.log(`Effect fired`);
+
+    try{
+      const dataFetchResult = await axios({
+        method: "GET",
+        url: "http://localhost:3001/persons"
+      });
+      setPersons(dataFetchResult.data);
+    }catch(e){
+      console.error(`ERROR FETCHING DATA FROM SERVER`,e);
+      window.alert("ERROR FETCHING DATA FROM SERVER. CHECK CONSOLE");
+    }
+  })();
+
+
+  },[]);
+
+
 
   const nameSet = new Set(persons.map(person => person.name));
   
