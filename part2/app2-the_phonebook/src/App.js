@@ -92,7 +92,7 @@ const App = (props) => {
     <div>
       <h2>Phonebook</h2>
       <PhonebookEntryForm handleOnSubmit={submitNewName} handleNewNameChange={handleNewNameChange} handleNewPhoneNumberChange={handlePhoneNumberChange} />
-      <PhonebookListingView ref={phonebookListingRef} persons={persons} />
+      <PhonebookListingView ref={phonebookListingRef} onReloadFromServer={populatePersonsData} persons={persons} />
     </div>
   )
 }

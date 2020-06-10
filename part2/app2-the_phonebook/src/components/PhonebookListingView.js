@@ -2,7 +2,7 @@ import React,{useState,forwardRef,useImperativeHandle} from "react";
 import Listing from "./Listing.js";
 
 
-const PhonebookListingView = ({persons},ref) => {
+const PhonebookListingView = ({persons,onReloadFromServer},ref) => {
 
 	const [searchString, setSearchString] = useState("");
 	const [isLoading,setIsLoading] = useState(true);
@@ -37,7 +37,7 @@ const PhonebookListingView = ({persons},ref) => {
 		<p>Loading...</p>
       </div>) : (<div>
 		<h2>Numbers</h2>
-		<br />
+		<button onClick={onReloadFromServer}>Reload from server</button>
 		<div>
 			Search: <input onChange={handleSearchStringChange} value={searchString} /> { searchRegex ? (<React.Fragment>(Filtered Results)<span onClick={clearSearchFilter} style={{color: "blue","textDecoration": "underline"}}>(Clear)</span></React.Fragment>) : (<React.Fragment></React.Fragment>) }
 		</div>
