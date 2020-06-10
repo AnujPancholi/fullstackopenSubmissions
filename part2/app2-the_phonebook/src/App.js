@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useRef} from 'react';
 import './App.css';
 import getCounter from "./lib/counter.js";
 import axios from "axios";
@@ -19,11 +19,13 @@ const App = (props) => {
   //to generate id for each element in a list, so as to not get a warning in the console
   const idGenerator = getCounter(persons.length===0 ? -1 : persons[persons.length-1].id);
 
+  const phonebookListingRef = useRef(null);
+
 
   useEffect(() => {
     (async() => {
     console.log(`Effect fired`);
-
+    phonebookListingRef.current.setLoading(true);
 
     setTimeout(async() => {
       try{
@@ -36,6 +38,7 @@ const App = (props) => {
         console.error(`ERROR FETCHING DATA FROM SERVER`,e);
         window.alert("ERROR FETCHING DATA FROM SERVER. CHECK CONSOLE");
       }
+      phonebookListingRef.current.setLoading(false);
     },3000)
   })();
 
@@ -80,7 +83,7 @@ const App = (props) => {
     <div>
       <h2>Phonebook</h2>
       <PhonebookEntryForm handleOnSubmit={submitNewName} handleNewNameChange={handleNewNameChange} handleNewPhoneNumberChange={handlePhoneNumberChange} />
-      <PhonebookListingView persons={persons} />
+      <PhonebookListingView ref={phonebookListingRef} persons={persons} />
     </div>
   )
 }

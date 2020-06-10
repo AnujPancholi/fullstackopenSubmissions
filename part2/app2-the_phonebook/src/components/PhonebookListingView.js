@@ -1,10 +1,11 @@
-import React,{useState} from "react";
+import React,{useState,forwardRef,useImperativeHandle} from "react";
 import Listing from "./Listing.js";
 
 
-const PhonebookListingView = ({persons}) => {
+const PhonebookListingView = ({persons},ref) => {
 
 	const [searchString, setSearchString] = useState("");
+	const [isLoading,setIsLoading] = useState(true);
 
 	const handleSearchStringChange = (event) => {
 		setSearchString(event.target.value);
@@ -19,8 +20,18 @@ const PhonebookListingView = ({persons}) => {
 	const peopleRenderList = persons.filter(person => searchRegex ? searchRegex.test(person.name) : true);
 
 
-	console.log(`PhonebookListingView RENDER`);
-	return (<div>
+	useImperativeHandle(ref,() => ({
+		setLoading: (loadingFlag) => {
+			setIsLoading(!!loadingFlag);
+		}
+	}))
+
+
+	console.log(`PhonebookListingView RENDER | isLoading: ${isLoading}`);
+	const phonebookListingJsx = isLoading ? (<div>
+		<h2>Numbers</h2>
+		<p>Loading...</p>
+      </div>) : (<div>
 		<h2>Numbers</h2>
 		<br />
 		<div>
@@ -32,7 +43,10 @@ const PhonebookListingView = ({persons}) => {
           peopleRenderList.length ? peopleRenderList.reduce((jsx,person) => jsx.concat(<React.Fragment key={person.id}><Listing name={person.name} phoneNumber={person.phoneNumber}/><br/></React.Fragment>),[]) : (<React.Fragment><i>No Results Found</i></React.Fragment>)
         }
       </div>
-      </div>)
+      </div>);
+
+
+	return phonebookListingJsx
 }
 
-export default PhonebookListingView;
+export default forwardRef(PhonebookListingView);
