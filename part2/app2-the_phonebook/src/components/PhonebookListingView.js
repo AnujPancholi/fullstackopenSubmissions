@@ -30,6 +30,7 @@ const PhonebookListingView = ({persons,onReloadFromServer},ref) => {
 		} 
 	}))
 
+	//have to clear the search filter to handle an edge case
 	const handleReloadClick = () => {
 		clearSearchFilter();
 		onReloadFromServer();

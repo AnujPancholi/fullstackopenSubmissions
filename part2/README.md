@@ -82,6 +82,23 @@ There are also a few bells and whistles that show when a search string is typed,
 
 
 ## Exercise 2.10
-Well, the app was already split into several components, so I didn't think I could do much more than this in terms of modularization, so I just added a comment to make a new commit for this exercise, and that can be considered done.    
+Well, the app was already split into several components, so I didn't think I could do much more than this in terms of modularization, so I just added a comment to make a new commit for this exercise, and that can be considered done.
+
+## Exercise 2.11
+As the exercise asked, first I added the `db.json` file in the root directory of the phonebook app, added the `server` script in `package.json`, and used axios to fetch the data from the API (Axios is my favorite package on npm and I have some experience with it). I put this API call in a function, which I can call whenever I want to repopulate the `PhonebookListingView` with new data from the server, so I could simply call this function inside the `useEffect` callback.
+
+Note that I did not use `.then()` but decided to go with `async-await`, which is the newest way to do promises, and a lot of devs agree that it's perhaps better than using a chain of `.then()` calls.
+
+I wasn't quite content here - I thought that I would have to implement a "loading" feature for `PhonebookListingView` because whatever "server" we may use might take long to respond. After some deliberation, I thought that whether or not the listings are being loaded or not will be determined in the `state` of the `PhonebookListingView` component, NOT the root `App` component, because there might be a scenario where we may have to re-render only the child component and not the whole parent (for example, if we wish to provide a button to reload the data from the server because the user is expecting changes, we don't have to re-render the root component). 
+
+With this came the challenge of changing the state of a *child* component from the *parent* component. From what I had learnt from this course so far, an action in the child component (for example, the form) could affect the state (`persons`) of the parent component, because the event handler used by the child component is defined in the parent itself, but the state of the child component would be out of the parent component's scope.
+
+I did some research, and found [this](https://itnext.io/changing-children-state-from-another-component-with-react-hooks-5c982c042e8) article form where I learnt about another React hook - the [useRef](https://reactjs.org/docs/hooks-reference.html#useref) hook, hand how they can be used in functional components with [ref forwarding](https://reactjs.org/docs/forwarding-refs.html) to expose a few functions that are in the closure of the child component with `useImperativeHandle`. To be honest, I'm still not 100% sure how it works, so my description may not be perfect here.
+
+When the function that populates the `persons` data from the server is called (defined in the `App` component), a function exposed in `App` via a `ref` is called, which *can* change the state of the `PhonebookListingView` component. So, at the start of the request, the `isLoading` state is set to `true` and with conditional rendering, I can render a "Loading" text. Once the request is finished, the `isLoading` state is set to false again, causing *only* the `PhonebookListingView` component to re-render, and display the fetched data.
+
+This is how I acheived a "Loading" text to appear, which can be seen if the `setTimeout` that I wrapped the `axios` request in is uncommented (it simulates time taken by an actual server to respond).
+
+I also had to face some edge cases, such as, if there is a search text due to which the phonebook results are getting filtered, and a new entry is added, the `persons` state would get updated, but it wouldn't be displayed, as the result was still filtered. I worked around as many such edge cases I could find. 
 
 ---
