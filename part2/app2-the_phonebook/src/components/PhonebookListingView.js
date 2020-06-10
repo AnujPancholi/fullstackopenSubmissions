@@ -2,13 +2,16 @@ import React,{useState} from "react";
 import Listing from "./Listing.js";
 
 
-const PhonebookListingView = ({persons}) => {
+const PhonebookListingView = ({persons,isLoading}) => {
 
 	const [searchString, setSearchString] = useState("");
+	
 
 	const handleSearchStringChange = (event) => {
 		setSearchString(event.target.value);
 	}
+
+	
 
 
 	const clearSearchFilter = (event) => {
@@ -18,7 +21,9 @@ const PhonebookListingView = ({persons}) => {
 	const searchRegex = searchString.length>0 ? new RegExp(searchString,'i') : null;
 	const peopleRenderList = persons.filter(person => searchRegex ? searchRegex.test(person.name) : true);
 
-	return (<div>
+
+	console.log(`PhonebookListingView RENDER`);
+	let phonebookListingJsx = (<div>
 		<h2>Numbers</h2>
 		<br />
 		<div>
@@ -30,7 +35,17 @@ const PhonebookListingView = ({persons}) => {
           peopleRenderList.length ? peopleRenderList.reduce((jsx,person) => jsx.concat(<React.Fragment key={person.id}><Listing name={person.name} phoneNumber={person.phoneNumber}/><br/></React.Fragment>),[]) : (<React.Fragment><i>No Results Found</i></React.Fragment>)
         }
       </div>
+      </div>);
+	if(isLoading){
+		phonebookListingJsx = (<div>
+		<h2>Numbers</h2>
+		<br />
+		<p>Loading...</p>
+		
       </div>)
+	}
+
+	return phonebookListingJsx
 }
 
 export default PhonebookListingView;
