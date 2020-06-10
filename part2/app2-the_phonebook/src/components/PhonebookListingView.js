@@ -29,6 +29,7 @@ const PhonebookListingView = ({persons,onReloadFromServer},ref) => {
 			clearSearchFilter();
 		} 
 	}))
+	
 
 
 	console.log(`PhonebookListingView RENDER | isLoading: ${isLoading}`);

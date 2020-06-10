@@ -30,7 +30,7 @@ const App = (props) => {
   const populatePersonsData = (async() => {
     console.log(`Effect fired`);
     phonebookListingRef.current.setLoading(true);
-    setTimeout(async() => {
+    // setTimeout(async() => {
       try{
         const dataFetchResult = await axios({
           method: "GET",
@@ -43,7 +43,7 @@ const App = (props) => {
       }
 
       phonebookListingRef.current.setLoading(false);
-    },3000)
+    // },3000)
   });
 
 
