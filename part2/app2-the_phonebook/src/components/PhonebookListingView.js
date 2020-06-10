@@ -18,6 +18,8 @@ const PhonebookListingView = ({persons}) => {
 	const searchRegex = searchString.length>0 ? new RegExp(searchString,'i') : null;
 	const peopleRenderList = persons.filter(person => searchRegex ? searchRegex.test(person.name) : true);
 
+
+	console.log(`PhonebookListingView RENDER`);
 	return (<div>
 		<h2>Numbers</h2>
 		<br />

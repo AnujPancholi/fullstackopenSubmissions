@@ -9,8 +9,6 @@ import {
 //app is split into several components
 
 
-//to generate id for each element in a list, so as to not get a warning in the console
-const idGenerator = getCounter(3);
 
 
 const App = (props) => {
@@ -18,20 +16,27 @@ const App = (props) => {
   const [ newName, setNewName ] = useState('');
   const [newPhoneNumber,setNewPhoneNumber] = useState('');
 
+  //to generate id for each element in a list, so as to not get a warning in the console
+  const idGenerator = getCounter(persons.length===0 ? -1 : persons[persons.length-1].id);
+
+
   useEffect(() => {
     (async() => {
     console.log(`Effect fired`);
 
-    try{
-      const dataFetchResult = await axios({
-        method: "GET",
-        url: "http://localhost:3001/persons"
-      });
-      setPersons(dataFetchResult.data);
-    }catch(e){
-      console.error(`ERROR FETCHING DATA FROM SERVER`,e);
-      window.alert("ERROR FETCHING DATA FROM SERVER. CHECK CONSOLE");
-    }
+
+    setTimeout(async() => {
+      try{
+        const dataFetchResult = await axios({
+          method: "GET",
+          url: "http://localhost:3001/persons"
+        });
+        setPersons(dataFetchResult.data);
+      }catch(e){
+        console.error(`ERROR FETCHING DATA FROM SERVER`,e);
+        window.alert("ERROR FETCHING DATA FROM SERVER. CHECK CONSOLE");
+      }
+    },3000)
   })();
 
 
@@ -70,6 +75,7 @@ const App = (props) => {
     }
   }
 
+  console.log(`App RENDER`);
   return (
     <div>
       <h2>Phonebook</h2>
