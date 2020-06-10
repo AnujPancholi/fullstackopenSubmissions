@@ -29,7 +29,12 @@ const PhonebookListingView = ({persons,onReloadFromServer},ref) => {
 			clearSearchFilter();
 		} 
 	}))
-	
+
+	const handleReloadClick = () => {
+		clearSearchFilter();
+		onReloadFromServer();
+	}
+
 
 
 	console.log(`PhonebookListingView RENDER | isLoading: ${isLoading}`);
@@ -38,7 +43,7 @@ const PhonebookListingView = ({persons,onReloadFromServer},ref) => {
 		<p>Loading...</p>
       </div>) : (<div>
 		<h2>Numbers</h2>
-		<button onClick={onReloadFromServer}>Reload from server</button>
+		<button onClick={handleReloadClick}>Reload from server</button>
 		<div>
 			Search: <input onChange={handleSearchStringChange} value={searchString} /> { searchRegex ? (<React.Fragment>(Filtered Results)<span onClick={clearSearchFilter} style={{color: "blue","textDecoration": "underline"}}>(Clear)</span></React.Fragment>) : (<React.Fragment></React.Fragment>) }
 		</div>
