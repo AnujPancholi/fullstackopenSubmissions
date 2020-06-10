@@ -82,6 +82,7 @@ const App = (props) => {
       }
       console.log(`NEW ENTRY: `,personsEntry);
       setPersons(persons.concat(personsEntry));
+      phonebookListingRef.current.clearPhonebookSearchFilter();
     }
   }
 

@@ -24,7 +24,10 @@ const PhonebookListingView = ({persons},ref) => {
 	useImperativeHandle(ref,() => ({
 		setLoading: (loadingFlag) => {
 			setIsLoading(!!loadingFlag);
-		}
+		},
+		clearPhonebookSearchFilter: () => {
+			clearSearchFilter();
+		} 
 	}))
 
 
