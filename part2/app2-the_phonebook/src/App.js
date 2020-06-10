@@ -15,6 +15,8 @@ const App = (props) => {
   const [ persons, setPersons ] = useState([]);
   const [ newName, setNewName ] = useState('');
   const [newPhoneNumber,setNewPhoneNumber] = useState('');
+  
+
 
   //to generate id for each element in a list, so as to not get a warning in the console
   const idGenerator = getCounter(persons.length===0 ? -1 : persons[persons.length-1].id);
@@ -22,11 +24,12 @@ const App = (props) => {
   const phonebookListingRef = useRef(null);
 
 
-  useEffect(() => {
-    (async() => {
+ 
+
+
+  const populatePersonsData = (async() => {
     console.log(`Effect fired`);
     phonebookListingRef.current.setLoading(true);
-
     setTimeout(async() => {
       try{
         const dataFetchResult = await axios({
@@ -38,11 +41,16 @@ const App = (props) => {
         console.error(`ERROR FETCHING DATA FROM SERVER`,e);
         window.alert("ERROR FETCHING DATA FROM SERVER. CHECK CONSOLE");
       }
+
       phonebookListingRef.current.setLoading(false);
     },3000)
-  })();
+  });
 
 
+
+
+  useEffect(() => {
+    populatePersonsData();
   },[]);
 
 
@@ -56,9 +64,8 @@ const App = (props) => {
   const handlePhoneNumberChange = (event) => {
     setNewPhoneNumber(event.target.value);
   }
+
   
-
-
   const submitNewName = (event) => {
     event.preventDefault();
     if(nameSet.has(newName)){
@@ -75,8 +82,10 @@ const App = (props) => {
       }
       console.log(`NEW ENTRY: `,personsEntry);
       setPersons(persons.concat(personsEntry));
+      populatePersonsData();
     }
   }
+
 
   console.log(`App RENDER`);
   return (

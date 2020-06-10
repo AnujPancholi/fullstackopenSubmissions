@@ -7,10 +7,10 @@ const PhonebookListingView = ({persons},ref) => {
 	const [searchString, setSearchString] = useState("");
 	const [isLoading,setIsLoading] = useState(true);
 
+
 	const handleSearchStringChange = (event) => {
 		setSearchString(event.target.value);
 	}
-
 
 	const clearSearchFilter = (event) => {
 		setSearchString("");
@@ -18,6 +18,7 @@ const PhonebookListingView = ({persons},ref) => {
 
 	const searchRegex = searchString.length>0 ? new RegExp(searchString,'i') : null;
 	const peopleRenderList = persons.filter(person => searchRegex ? searchRegex.test(person.name) : true);
+
 
 
 	useImperativeHandle(ref,() => ({
@@ -44,7 +45,6 @@ const PhonebookListingView = ({persons},ref) => {
         }
       </div>
       </div>);
-
 
 	return phonebookListingJsx
 }
