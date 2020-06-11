@@ -28,6 +28,10 @@ const getWhetherResponseForQuery = (query="") => {
 				}
 			});
 
+			if(weatherStackAxiosResponse.data.hasOwnProperty('success') && !weatherStackAxiosResponse.data.success){
+				throw new Error("FAILURE RESPONSE RECEIVED");
+			}
+
 			resultObj.result = weatherStackAxiosResponse.data;
 			resultObj.success = true;
 
