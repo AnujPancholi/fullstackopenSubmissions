@@ -3,7 +3,7 @@ import CountryList from './CountryList.js';
 import CountryView from './CountryView.js';
 
 
-const SearchResults = ({countries},ref) => {
+const SearchResults = ({countries,setCustomCountries},ref) => {
 
 	const [isLoading,setIsLoading] = useState(false);
 
@@ -33,7 +33,7 @@ const SearchResults = ({countries},ref) => {
 			)
 		} else {
 			searchResultJsx = (<React.Fragment>
-				<CountryList countries={countries} />
+				<CountryList countries={countries} setCustomCountries={setCustomCountries} />
 			</React.Fragment>)
 		}
 	}

@@ -30,6 +30,10 @@ function App() {
     },SEARCH_INACTIVITY_TIMEOUT);
   }
 
+  const setCustomCountries = (customCountries) => {
+    setCountries(customCountries);
+  }
+
   
 
   const clearSearchString = () => {
@@ -76,7 +80,7 @@ function App() {
 
       <TextSearch text="Search:" onSearchChange={handleSearchStringChange} onSearchClear={clearSearchString} />
 
-      <SearchResults countries={countries} ref={searchResultsRef} />
+      <SearchResults countries={countries} setCustomCountries={setCustomCountries} ref={searchResultsRef} />
 
     </div>
   );
