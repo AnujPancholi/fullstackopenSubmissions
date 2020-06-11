@@ -113,7 +113,18 @@ Most of the concepts that I've used are the same ones that I've used in the prev
 
  	So, instead of directly updating the state, I used `setTimeout` and `clearInterval` to only update `searchString` after some threshold time (set to 1 second) of inactivity. For instance, to search for Finland, the user would need to type "Finland" in the search box and simply wait for 1 second for the API call to be made.
 
-I'm still not good with styling so although the results may not look too aesthetically pleasing, it has the functionality that the exercise is looking for. 
+I'm still not good with styling so although the results may not look too aesthetically pleasing, it has the functionality that the exercise is looking for.
+
+##Exercise 2.13
+Implementing the buttons against each country in the `CountryList` component was fairly easy, but not pretty.
+
+I've made a `SearchResults` component that is a direct child of the root component, which handles whether to show a single country view (via the `CountryView` component), or a list of countries, or a message to ask the user for a different search input in case of 10+ results. To render a single country view, the `countries` array passed to this component must be a singleton array, and this array happens to be part of the root component's state. So, all I needed to do was to change the `countries` array in the state of the root component from whichever country's button is clicked, and make it a singleton array containing the object of that particular country.
+
+However, the hierarchy of components is this: the `App` component has a child component `SearchResults` which in turn, depending on the passed-down `countries` state, will render a `CountryList` component, which will render a list of `CountryListItem` components, each of which will contain a new `Button` component. A function to change set the state of the root component will need to be passed down to these children.
+
+And so it was - I made a function `setCustomCountries` in the `App` component and passed it down the App->SearchResults->CountryList->CountryListItem hierarchy via props. Yes. And I made a function inside of the `CountryListItem` component that calls this function to set the `countries` state property as a singleton array with the object of that particular country.
+
+If it works, it works.   
 
 
 
