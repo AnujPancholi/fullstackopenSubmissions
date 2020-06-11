@@ -99,6 +99,23 @@ When the function that populates the `persons` data from the server is called (d
 
 This is how I acheived a "Loading" text to appear, which can be seen if the `setTimeout` that I wrapped the `axios` request in is uncommented (it simulates time taken by an actual server to respond).
 
-I also had to face some edge cases, such as, if there is a search text due to which the phonebook results are getting filtered, and a new entry is added, the `persons` state would get updated, but it wouldn't be displayed, as the result was still filtered. I worked around as many such edge cases I could find. 
+I also had to face some edge cases, such as, if there is a search text due to which the phonebook results are getting filtered, and a new entry is added, the `persons` state would get updated, but it wouldn't be displayed, as the result was still filtered. I worked around as many such edge cases I could find.
+
+## Exercise 2.12
+I've used what I learnt in the previous exercises to make this app.
+
+Most of the concepts that I've used are the same ones that I've used in the previous exercise, so I'm not going to dive deep into what I did and why I did it, however, there are a few key differences to note:
+
+ - **Wrapper for the countries API**
+ 	Instead of hardcoding the URL and preparing the axios request in the root component itself, I built a wrapper over the API, which the root component imports for use. If the API ever changes, I can just change the wrapper, and no changes in the root component would be required, provided that the behavior of the wrapper is the same. 
+ - **Timeout in the onChange handler for search input**:
+ 	Using the "all" endpoint as suggested in the course would, according to me, be an abhorrant practice, since no real app fetches all the available data on loading and then plays with that data on memory. For this reason, I decided to use the endpoint that accepts a "name" as a URL param, and returns all results that match the string partially. Since the `userEffect` hook that makes the API call is given the `searchString` in the second parameter (so that the callback is triggered whenever `searchString` state changes), making a handler that updates the value of the `searchString` state property with the value of the `input` in the controlled component `TextSearch` will cause too many API calls which won't even be necessary. 
+
+ 	So, instead of directly updating the state, I used `setTimeout` and `clearInterval` to only update `searchString` after some threshold time (set to 1 second) of inactivity. For instance, to search for Finland, the user would need to type "Finland" in the search box and simply wait for 1 second for the API call to be made.
+
+I'm still not good with styling so although the results may not look too aesthetically pleasing, it has the functionality that the exercise is looking for. 
+
+
+
 
 ---
