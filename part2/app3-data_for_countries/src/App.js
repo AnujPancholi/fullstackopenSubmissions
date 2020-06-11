@@ -33,7 +33,7 @@ function App() {
   
 
   const clearSearchString = () => {
-    setCountries('');
+    setSearchString('');
   }
 
   useEffect(() => {
@@ -59,6 +59,8 @@ function App() {
         }
         searchResultsRef.current.setLoading(false);
       })();
+    } else {
+      setCountries([]);
     }
   },[searchString])
 
