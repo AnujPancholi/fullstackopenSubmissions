@@ -18,7 +18,6 @@ const TextSearch = ({text,onSearchChange,onSearchSubmit,onSearchClear}) => {
 		buttonsJsx.push((<Button text="Clear search" key="BUTTON_CLEAR" handleOnClick={clearSearch} />))
 	}
 
-	console.log(searchInputRef);
   return (<div>
     {text}
     <input type="text" onChange={onSearchChange} ref={searchInputRef} />

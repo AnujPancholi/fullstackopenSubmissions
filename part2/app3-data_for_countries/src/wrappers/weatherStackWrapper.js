@@ -1,44 +1,43 @@
 import axios from 'axios';
 
-const restCountriesAxios = axios.create({
-	baseURL: `https://restcountries.eu/rest/v2`,
+const weatherStackAxios = axios.create({
+	baseURL: `http://api.weatherstack.com/`,
 	timeout: 10000
 })
 
 
-
-const getCountriesResultBySearchString = (_searchString = '') => {
-
+const getWhetherResponseForQuery = (query="") => {
 	return new Promise(async(resolve,reject) => {
 		const resultObj = {
 			isWrapperResult: true,
 			success: false,
-			result: [],
+			result: null,
 			error: null
 		}
-
-		try {
-			if(_searchString===''){
-				throw new Error("EMPTY SEARCHSTRING");
+		try{
+			if(query===""){
+				throw new Error("EMPTY QUERY");
 			}
 
-			const requestAxiosResult = await restCountriesAxios({
+			const weatherStackAxiosResponse = await weatherStackAxios({
 				method: "GET",
-				url: `/name/${_searchString}`
-			})
+				url: `/current`,
+				params: {
+					access_key: process.env.REACT_APP_WEATHERSTACK_API_KEY,
+					query: query
+				}
+			});
 
+			resultObj.result = weatherStackAxiosResponse.data;
 			resultObj.success = true;
-			resultObj.result = requestAxiosResult.data;
-			resultObj.error = null;
 
 			resolve(resultObj);
 
-		}catch(e){
-			console.log(`restCountriesWrapper | ERROR IN getCountriesResultBySearchString | ${e.message}`);
 
+		}catch(e){
 			if(e.isAxiosError){
 				if(e.response){
-					resultObj.error = e.response.data
+					resultObj.error = e.response.data;
 				} else if(e.request){
 					resultObj.error = {
 						message: "NO RESPONSE FROM SERVER"
@@ -58,11 +57,12 @@ const getCountriesResultBySearchString = (_searchString = '') => {
 			resultObj.result = null;
 
 			reject(resultObj);
-		}		
+
+		}
 	})
 }
 
 
 export default {
-	getCountriesResultBySearchString
+	getWhetherResponseForQuery
 }
