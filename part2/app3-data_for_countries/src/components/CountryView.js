@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import weatherWrapper from '../wrappers/weatherStackWrapper.js';
 
 
 const CountryTitle = ({name}) => {
@@ -51,10 +52,91 @@ const CountryLanguages = ({languages}) => {
 
 }
 
+const CountryCapitalWeather = ({weatherInfo}) => {
+
+	let weatherJsx = null;
+
+	if(!weatherInfo.isWeatherLoaded){
+
+		weatherJsx = (<React.Fragment>
+
+				<h5>Loading...</h5>
+
+				</React.Fragment>)
+
+	} else {
+		if(weatherInfo.success){
+
+			weatherJsx = (<React.Fragment>
+				<h5>
+					Weather in {weatherInfo.data.location.name}
+				</h5>
+
+				<p>Temperature: {weatherInfo.data.current.temperature}&deg;C</p>
+				<p>Description: {weatherInfo.data.current.weather_descriptions.length ? weatherInfo.data.current.weather_descriptions.join(', ') : "NA"}</p>
+
+			</React.Fragment>)
+
+		} else {
+
+			weatherJsx = (<React.Fragment>
+
+				<h5>Could not fetch weather.</h5>
+
+				</React.Fragment>)
+
+			
+		}
+	}
+
+
+	return (<div>
+		{weatherJsx}
+	</div>)
+
+
+}
+
 
 
 const CountryView = ({country}) => {
 
+	// const [isWeatherLoaded,setIsWeatherLoaded] = useState(false);
+	const [capitalWeather,setCapitalWeather] = useState({
+		isWeatherLoaded: false,
+		success: false,
+		data: null
+	});
+
+	useEffect(() => {
+		(async() => {
+			try{
+				const weatherResponse = await weatherWrapper.getWhetherResponseForQuery(country.capital);
+
+				setCapitalWeather({
+					isWeatherLoaded: true,
+					success: true,
+					data: weatherResponse.result
+				});
+
+			}catch(e){
+				console.log(`ERROR LOADING WEATHER`,e);
+
+				setCapitalWeather({
+					isWeatherLoaded: true,
+					success: false,
+					data: {
+						message: "WEATHER COULD NOT BE LOADED"
+					}
+				})
+			}
+
+		})()
+	},[])
+
+	
+
+	console.log("WEATHER: ",capitalWeather);
 
 	return (<div>
 		
@@ -62,11 +144,9 @@ const CountryView = ({country}) => {
 		<CountryTitle name={country.name} />
 		<CountryFacts country={country} />
 		<CountryLanguages languages={country.languages} />
+		<CountryCapitalWeather weatherInfo={capitalWeather} />
 		
 		
-
-
-
 
 		</div>)
 }

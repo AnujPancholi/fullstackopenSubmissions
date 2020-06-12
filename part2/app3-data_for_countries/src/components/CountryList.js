@@ -7,7 +7,7 @@ const CountryListItem = ({country,setCustomCountries}) => {
 		setCustomCountries([country]);
 	}
 
-	return  (<div><span style={{"padding-right": "5px"}}>{country.name}</span>
+	return  (<div><span style={{"paddingRight": "5px"}}>{country.name}</span>
 		<Button text="View" handleOnClick={setCurrentCountryAsResult} />
 		</div>);
 }
