@@ -115,7 +115,8 @@ Most of the concepts that I've used are the same ones that I've used in the prev
 
 I'm still not good with styling so although the results may not look too aesthetically pleasing, it has the functionality that the exercise is looking for.
 
-##Exercise 2.13
+
+## Exercise 2.13
 Implementing the buttons against each country in the `CountryList` component was fairly easy, but not pretty.
 
 I've made a `SearchResults` component that is a direct child of the root component, which handles whether to show a single country view (via the `CountryView` component), or a list of countries, or a message to ask the user for a different search input in case of 10+ results. To render a single country view, the `countries` array passed to this component must be a singleton array, and this array happens to be part of the root component's state. So, all I needed to do was to change the `countries` array in the state of the root component from whichever country's button is clicked, and make it a singleton array containing the object of that particular country.
@@ -126,7 +127,7 @@ And so it was - I made a function `setCustomCountries` in the `App` component an
 
 If it works, it works.
 
-##Exercise 2.14
+## Exercise 2.14
 For this exercise, one thing was clear to me from the get-go: the API call for fetching the weather info would be made via a `useEffect` hook in the `CountryView` component. The question was -  where to store the result of the API call, so that any requisite information would be available? I decided to store that in the state of the `CountryView` component.
 
 Then I made a component `CountryCapitalWeather` which would be a child component of the `CountryView` component, and the state of the `CountryView` component will be passed down to this component via props, just like the country info is being passed from the state of the root `App` component to the `CountryView` component. At any given time, we could have 3 things that we want to render in this component: "Loading", the actual data, or an error message in case the API call fails. So the state object is going to have 3 properties: `isWeatherLoaded`, a boolean to signify whether the API call is done or not, `success`, a boolean to signify whether the API call was successful or not, and `data` to actually store the response.
