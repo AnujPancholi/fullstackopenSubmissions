@@ -60,7 +60,7 @@ const CountryCapitalWeather = ({weatherInfo}) => {
 
 		weatherJsx = (<React.Fragment>
 
-				<h5>Loading...</h5>
+				<h4>Loading...</h4>
 
 				</React.Fragment>)
 
@@ -68,9 +68,11 @@ const CountryCapitalWeather = ({weatherInfo}) => {
 		if(weatherInfo.success){
 
 			weatherJsx = (<React.Fragment>
-				<h5>
+				<h4>
 					Weather in {weatherInfo.data.location.name}
-				</h5>
+				</h4>
+
+				<img src={weatherInfo.data.current.weather_icons[0] || ""} alt="weather-icon" style={{"maxHeight": "30px","width": "auto"}} />
 
 				<p>Temperature: {weatherInfo.data.current.temperature}&deg;C</p>
 				<p>Description: {weatherInfo.data.current.weather_descriptions.length ? weatherInfo.data.current.weather_descriptions.join(', ') : "NA"}</p>
@@ -81,7 +83,7 @@ const CountryCapitalWeather = ({weatherInfo}) => {
 
 			weatherJsx = (<React.Fragment>
 
-				<h5>Could not fetch weather.</h5>
+				<h4>Could not fetch weather.</h4>
 
 				</React.Fragment>)
 
@@ -144,6 +146,7 @@ const CountryView = ({country}) => {
 		<CountryTitle name={country.name} />
 		<CountryFacts country={country} />
 		<CountryLanguages languages={country.languages} />
+		<hr />
 		<CountryCapitalWeather weatherInfo={capitalWeather} />
 		
 		
