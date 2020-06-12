@@ -124,7 +124,14 @@ However, the hierarchy of components is this: the `App` component has a child co
 
 And so it was - I made a function `setCustomCountries` in the `App` component and passed it down the App->SearchResults->CountryList->CountryListItem hierarchy via props. Yes. And I made a function inside of the `CountryListItem` component that calls this function to set the `countries` state property as a singleton array with the object of that particular country.
 
-If it works, it works.   
+If it works, it works.
+
+##Exercise 2.14
+For this exercise, one thing was clear to me from the get-go: the API call for fetching the weather info would be made via a `useEffect` hook in the `CountryView` component. The question was -  where to store the result of the API call, so that any requisite information would be available? I decided to store that in the state of the `CountryView` component.
+
+Then I made a component `CountryCapitalWeather` which would be a child component of the `CountryView` component, and the state of the `CountryView` component will be passed down to this component via props, just like the country info is being passed from the state of the root `App` component to the `CountryView` component. At any given time, we could have 3 things that we want to render in this component: "Loading", the actual data, or an error message in case the API call fails. So the state object is going to have 3 properties: `isWeatherLoaded`, a boolean to signify whether the API call is done or not, `success`, a boolean to signify whether the API call was successful or not, and `data` to actually store the response.
+
+I initially check `isWeatherLoaded`, which, if false, will render the "Loading..." text. If it's true, then the `success` boolean is checked to determine if the fetching was successful. If true, the `data` object will contain the required data, which is used to render the weather information, else, a short error message is displayed.
 
 
 
