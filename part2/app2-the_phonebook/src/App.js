@@ -68,22 +68,26 @@ const App = (props) => {
   
   const submitNewName = (event) => {
     event.preventDefault();
-    if(nameSet.has(newName)){
-      window.alert(`${newName} already exists.`);
-    } else if(newName===""){
-      window.alert(`The name cannot be empty`);
-    } else if(!newPhoneNumber.match(/^\d+[\d\-]*\d+$/)){
-      window.alert(`Invalid phone number "${newPhoneNumber}" - it must only contain digits with hyphens in between being optional`);
-    } else {
-      const personsEntry = {
-        id: idGenerator.next(),
-        name: newName,
-        phoneNumber: newPhoneNumber
+
+    (async() => {
+      if(nameSet.has(newName)){
+        window.alert(`${newName} already exists.`);
+      } else if(newName===""){
+        window.alert(`The name cannot be empty`);
+      } else if(!newPhoneNumber.match(/^\d+[\d\-]*\d+$/)){
+        window.alert(`Invalid phone number "${newPhoneNumber}" - it must only contain digits with hyphens in between being optional`);
+      } else {
+        const personsEntry = {
+          id: idGenerator.next(),
+          name: newName,
+          phoneNumber: newPhoneNumber
+        }
+        console.log(`NEW ENTRY: `,personsEntry);
+        setPersons(persons.concat(personsEntry));
+        phonebookListingRef.current.clearPhonebookSearchFilter();
       }
-      console.log(`NEW ENTRY: `,personsEntry);
-      setPersons(persons.concat(personsEntry));
-      phonebookListingRef.current.clearPhonebookSearchFilter();
-    }
+    })();
+
   }
 
 
