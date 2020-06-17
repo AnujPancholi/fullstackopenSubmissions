@@ -19,7 +19,7 @@ const App = (props) => {
 
 
   //to generate id for each element in a list, so as to not get a warning in the console
-  const idGenerator = getCounter(persons.length===0 ? -1 : persons[persons.length-1].id);
+  // const idGenerator = getCounter(persons.length===0 ? -1 : persons[persons.length-1].id);
 
   const phonebookListingRef = useRef(null);
 
@@ -78,13 +78,26 @@ const App = (props) => {
         window.alert(`Invalid phone number "${newPhoneNumber}" - it must only contain digits with hyphens in between being optional`);
       } else {
         const personsEntry = {
-          id: idGenerator.next(),
           name: newName,
           phoneNumber: newPhoneNumber
         }
         console.log(`NEW ENTRY: `,personsEntry);
-        setPersons(persons.concat(personsEntry));
         phonebookListingRef.current.clearPhonebookSearchFilter();
+
+        try{
+          const personEntryAxiosResult = await axios({
+            method: "POST",
+            url: `http://localhost:3001/persons`,
+            data: personsEntry
+          })
+          console.log(`NEW ENTRY ADDED`);
+
+        }catch(e){
+          console.error(`ERROR IN MAKING NEW PERSON ENTRY - `,e);
+          window.alert(`ERROR IN MAKING NEW PERSON ENTRY: ${e.message || "PROBABALY A SERVER ISSUE"}`);
+        }
+
+        populatePersonsData();
       }
     })();
 
