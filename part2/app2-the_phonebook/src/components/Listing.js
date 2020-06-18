@@ -1,7 +1,6 @@
 import React from "react";
 
 const Button = ({text,handleOnClick}) => {
-
 	return (<React.Fragment>
 		<button onClick={handleOnClick}>{text}</button>
 	</React.Fragment>)
