@@ -143,6 +143,11 @@ Why re-populate from the server? Because there might be other users who have ope
 
 I was able to make this change quite quickly, because earlier, I had put the entire process of calling the GET API to populate the state of the root component in a function called `populatePersonsData`, which the callback of the `useEffect` hook calls. The reason I did this in the earlier exercises is because I anticipated this exact scenario, and so I only had to call the `populatePersonsData` function after the POST API call to update the data on the server was complete. Time to give myself a pat on the back!
 
+## Exercise 2.16
+Extracting the code that interacts with the backend API into a separate module was reasonably easy. Since all these API calls are going to be non-blocking (async) operations, all the functions that this module (`src/wrappers/backendWrapper.js`) would export would have to return promises. I made this much in the same way I had accomplished the same thing in the "countries" app - an object would be resolved with a `success` boolean, a `result` object/array in case the server returns a useful result and an `error` object.
+
+I prepared this module and imported it in the root component as simply `backend`, so any request being made to the backend would appear in the code as `backend.functionName()`, which makes more for readable code, in that the maintainer would know whenever some interaction with the backend is happening. 
+
 
 
 ---
