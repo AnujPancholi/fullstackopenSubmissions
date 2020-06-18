@@ -1,6 +1,7 @@
 import React,{useState,useEffect,useRef} from 'react';
 import './App.css';
 import getCounter from "./lib/counter.js";
+import backend from "./wrappers/backendWrapper.js";
 import axios from "axios";
 import {
   PhonebookEntryForm,
@@ -32,11 +33,11 @@ const App = (props) => {
     phonebookListingRef.current.setLoading(true);
     // setTimeout(async() => {
       try{
-        const dataFetchResult = await axios({
-          method: "GET",
-          url: "http://localhost:3001/persons"
-        });
-        setPersons(dataFetchResult.data);
+        const personsDataWrapperResponse = await backend.getPersonsData();
+        if(!personsDataWrapperResponse.success){
+          throw new Error(personsDataWrapperResponse.error.message || "SERVER ERROR");
+        }
+        setPersons(personsDataWrapperResponse.result);
       }catch(e){
         console.error(`ERROR FETCHING DATA FROM SERVER`,e);
         window.alert("ERROR FETCHING DATA FROM SERVER. CHECK CONSOLE");
