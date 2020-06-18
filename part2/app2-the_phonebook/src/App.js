@@ -104,13 +104,32 @@ const App = (props) => {
 
   }
 
+  const getDeleteFunctionForId = (__id) => {
+
+    return (async() => {
+
+      try{
+        const personDeleteResult = await backend.deleteById(__id);
+        if(!personDeleteResult.success){
+          throw new Error(personDeleteResult.error.message || "SERVER ERROR");
+        }
+
+        populatePersonsData();
+
+      }catch(e){
+        console.error(`ERROR IN DELETING PERSON ENTRY - `,e);
+        window.alert(`ERROR IN DELETING PERSON ENTRY ${e.message || "PROBABALY A SERVER ISSUE"}`);
+      }
+    })
+  }
+
 
   console.log(`App RENDER`);
   return (
     <div>
       <h2>Phonebook</h2>
       <PhonebookEntryForm handleOnSubmit={submitNewName} handleNewNameChange={handleNewNameChange} handleNewPhoneNumberChange={handlePhoneNumberChange} />
-      <PhonebookListingView ref={phonebookListingRef} onReloadFromServer={populatePersonsData} persons={persons} />
+      <PhonebookListingView ref={phonebookListingRef} onReloadFromServer={populatePersonsData} persons={persons} onDeleteListing={getDeleteFunctionForId} />
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React,{useState,forwardRef,useImperativeHandle} from "react";
 import Listing from "./Listing.js";
 
 
-const PhonebookListingView = ({persons,onReloadFromServer},ref) => {
+const PhonebookListingView = ({persons,onReloadFromServer,onDeleteListing},ref) => {
 
 	const [searchString, setSearchString] = useState("");
 	const [isLoading,setIsLoading] = useState(true);
@@ -51,7 +51,7 @@ const PhonebookListingView = ({persons,onReloadFromServer},ref) => {
 		<br />
       <div>
         {	
-          peopleRenderList.length ? peopleRenderList.reduce((jsx,person) => jsx.concat(<React.Fragment key={person.id}><Listing name={person.name} phoneNumber={person.phoneNumber}/><br/></React.Fragment>),[]) : (<React.Fragment><i>No Results Found</i></React.Fragment>)
+          peopleRenderList.length ? peopleRenderList.reduce((jsx,person) => jsx.concat(<React.Fragment key={person.id}><Listing name={person.name} phoneNumber={person.phoneNumber} id={person.id} onDeleteListing={onDeleteListing} /><br/></React.Fragment>),[]) : (<React.Fragment><i>No Results Found</i></React.Fragment>)
         }
       </div>
       </div>);
