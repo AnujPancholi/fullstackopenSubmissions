@@ -2,7 +2,6 @@ import React,{useState,useEffect,useRef} from 'react';
 import './App.css';
 import getCounter from "./lib/counter.js";
 import backend from "./wrappers/backendWrapper.js";
-import axios from "axios";
 import {
   PhonebookEntryForm,
   PhonebookListingView
@@ -86,11 +85,12 @@ const App = (props) => {
         phonebookListingRef.current.clearPhonebookSearchFilter();
 
         try{
-          const personEntryAxiosResult = await axios({
-            method: "POST",
-            url: `http://localhost:3001/persons`,
-            data: personsEntry
-          })
+          
+          const personEntryAdditionResult = await backend.addPersonEntry(personsEntry);
+          if(!personEntryAdditionResult.success){
+            throw new Error(personEntryAdditionResult.error.message || "SERVER ERROR");
+          }
+
           console.log(`NEW ENTRY ADDED`);
 
         }catch(e){
