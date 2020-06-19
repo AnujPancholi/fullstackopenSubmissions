@@ -71,7 +71,27 @@ const App = (props) => {
 
     (async() => {
       if(nameSet.has(newName)){
-        window.alert(`${newName} already exists.`);
+        if(window.confirm(`${newName} already exists. Update number?`)){
+          try{
+
+            const existingPersonEntry = persons.find(person => person.name===newName);
+            if(!existingPersonEntry){
+              throw new Error("PERSON ENTRY NOT FOUND WITH GIVEN NAME");
+            }
+
+            const updateResult = await backend.updateById(existingPersonEntry.id,{
+              name: newName,
+              phoneNumber: newPhoneNumber
+            })
+            populatePersonsData();
+
+          }catch(e){
+            console.error(`ERROR IN UPDATING PERSON ENTRY - `,e);
+            window.alert(`ERROR IN UPDATING PERSON ENTRY: ${e.message || "PROBABALY A SERVER ISSUE"}`);
+          }
+        }
+
+
       } else if(newName===""){
         window.alert(`The name cannot be empty`);
       } else if(!newPhoneNumber.match(/^\d+[\d\-]*\d+$/)){
