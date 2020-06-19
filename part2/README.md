@@ -153,6 +153,11 @@ Again, I needed to perform something from a button in the child component that w
 
 Then I came back to the exercise statement and discovered that I had missed a detail - the exercise says that I may use the `window.confirm` function to confirm the delete. Although the exercise said "may", I decided to do it anyway, so, I cooked up a function that confirms the delete first, and then calls the passed-down `getDeleteFunctionForId` function to get the id-specific delete function, which I call immediately (`getDeleteFunctionForId(id)()`). It worked just fine and the desired functionality was obtained.
 
+## Exercise 2.18
+The first step was to add a function to make the PUT request, which accepts the `id` of the entry which is to be changed and the object containing the changes. I first tried the request in postman, and it seems that I would have to supply the entire object to update, *not just* the property that is to be updated (which I'm not a fan of - what if we had a large object with 40-50 properties?).
+
+Once that function was ready in the `backendWrapper`, all I had to do was to call that function when a duplicate name was detected. Rest of it was pretty similar to a few of the previous exercises, so I'm not going to go into details.
+
 
 
 ---
