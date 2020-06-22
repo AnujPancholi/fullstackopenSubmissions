@@ -147,7 +147,7 @@ const App = (props) => {
   console.log(`App RENDER`);
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h2 className="App-title">Phonebook</h2>
       <PhonebookEntryForm handleOnSubmit={submitNewName} handleNewNameChange={handleNewNameChange} handleNewPhoneNumberChange={handlePhoneNumberChange} />
       <PhonebookListingView ref={phonebookListingRef} onReloadFromServer={populatePersonsData} persons={persons} onDeleteListing={getDeleteFunctionForId} />
     </div>
