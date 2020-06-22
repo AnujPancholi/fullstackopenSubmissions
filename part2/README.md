@@ -134,6 +134,8 @@ Then I made a component `CountryCapitalWeather` which would be a child component
 
 I initially check `isWeatherLoaded`, which, if false, will render the "Loading..." text. If it's true, then the `success` boolean is checked to determine if the fetching was successful. If true, the `data` object will contain the required data, which is used to render the weather information, else, a short error message is displayed.
 
+**NOTE:** The WeatherStack API suggested by the course needed an API key, which I stored as an env variable via a `.env` file, and it says [this section of the create-react-app docs](https://create-react-app.dev/docs/adding-custom-environment-variables/#adding-development-environment-variables-in-env) that I *should* include the env file in source control, however, I'm not going to do that, and have put the `.env` file in `.gitignore`. **If you wish to build and run this practice app, please use your own API key in a .env file**.
+
 ## Exercise 2.15
 The statement for this exercise was short and a bit vague - by asking to push the data to a backend server, I first assumed that I would need to make a new backend server which reads from/writes to a json file or a database, but since the course has not gone that far yet, that was (thankfully) not the case. It appears that the `json-server` package sets up a default POST endpont as well, and when a json payload is supplied to this endpoint, it adds an `id` field itself (as should be the case - uuid generation should be left to either the database or some backend service) and stores the new object in the array specified in the json file.
 
