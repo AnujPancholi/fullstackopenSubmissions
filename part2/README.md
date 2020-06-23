@@ -160,6 +160,14 @@ The first step was to add a function to make the PUT request, which accepts the 
 
 Once that function was ready in the `backendWrapper`, all I had to do was to call that function when a duplicate name was detected. Rest of it was pretty similar to a few of the previous exercises, so I'm not going to go into details.
 
+## Exercise 2.19
+This part is what I did not look forward to, given my hatred for css. Nonetheless, I made a `Notification` component and a css file for it, containing the css copied form the course, under a css class `notif-error`. I changed the color to make another class `notif-success` and a class that will be the default css class for the component `notif-inactive`, which will hide the notification component when it is not needed.
+
+Instead of having a simple message string as the state passed down to the `Notification` component (as shown in the course), I thought that any notification should have two properties - a `type` (error, success, alert etc.) and a `message` string to display.
+
+Since these two properties would change together, I decided to make the state for this notification an object with these two properties. There are three accepted types - "inactive" (default) "success" and "error", and on the basis of the type, the notification will be rendered. The "message" string will be rendered inside of the notification div regardless of the type.
+
+I have put "success" notifications for successful new entry, successful phone number change and successful delete of an exiting entry, but if, for any reason, we want to display the notification for delete operation in red color (as an error), all we would have to do is change the "type" of that notification, not the notification itself, which I think is an advantage that this approach of mine offers.
 
 
 ---
