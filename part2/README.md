@@ -169,5 +169,12 @@ Since these two properties would change together, I decided to make the state fo
 
 I have put "success" notifications for successful new entry, successful phone number change and successful delete of an exiting entry, but if, for any reason, we want to display the notification for delete operation in red color (as an error), all we would have to do is change the "type" of that notification, not the notification itself, which I think is an advantage that this approach of mine offers.
 
+## Exercise 2.20
+This was a little trickier than I thought. First, I went into the error handling of various calls to the `backendWrapper` module in the root component, and added the `showNotification` calls instead of the `window.alert` calls I had in place earlier, however, that was generating a generic error instead of a more descript error message. Moreover, when I tried changing a phone number for a non-existent entry (as instructed in the exercise statement), I got a success notification instead of an error notification, since the functions in my `backendWrapper` module were always *resolving* the promise, never *rejecting* it. At first I made a change in the wrapper, but then I reversed those changes and handled that case for phone number update in the root component itself (inside the function `submitNewName`).
+
+Also, I noticed that I was not getting any data in the response payload from the server, only an http response code. Since my `backendWrapper` module was resolving the response payload to the root component, it did not make sense to look into that object for a specific error message, since it was in empty object. So, I decided to check in the `backendWrapper` if the response body was an empty object, and if so, I would construct a body of my own containing an `errCode` (which would be the HTTP status code form the server) and a string `message`, an error-specific string that I would generate based in the response code, in the `backendWrapper` module itself.
+
+With this change done, I opened the page in two tabs in my browser, and opened the dev tools for tab 2. In tab 2, I created a new entry, after which I searched for the same entry after using the "Reload from server" button in tab 1, and deleted it there. Now, I could see the entry in tab 2, in spite of the fact that it had been deleted from the server. I then attempted to change the phone number for the entry, and got an error notification, saying "RECORD NOT FOUND", as intended.    
+
 
 ---
