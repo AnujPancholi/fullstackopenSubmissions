@@ -4,7 +4,8 @@ import getCounter from "./lib/counter.js";
 import backend from "./wrappers/backendWrapper.js";
 import {
   PhonebookEntryForm,
-  PhonebookListingView
+  PhonebookListingView,
+  Notification
 } from "./components/index.js"
 //app is split into several components
 
@@ -15,6 +16,10 @@ const App = (props) => {
   const [ persons, setPersons ] = useState([]);
   const [ newName, setNewName ] = useState('');
   const [newPhoneNumber,setNewPhoneNumber] = useState('');
+  const [notificationState,setNotificationState] = useState({
+    type: "inactive",
+    message: null
+  });
   
 
 
@@ -45,6 +50,19 @@ const App = (props) => {
       phonebookListingRef.current.setLoading(false);
     // },3000)
   });
+
+  const showNotification = (__notificationState,__timeout) => {
+
+    setNotificationState(__notificationState);
+
+    setTimeout(() => {
+      setNotificationState({
+        type: "inactive",
+        message: null
+      })
+    },__timeout>1999 && __timeout<6000 ? __timeout : 3000);
+
+  }
 
 
 
@@ -83,6 +101,12 @@ const App = (props) => {
               name: newName,
               phoneNumber: newPhoneNumber
             })
+
+            showNotification({
+              type: "success",
+              message: "ENTRY UPDATED SUCCESSFULLY"
+            },3000);
+
             populatePersonsData();
 
           }catch(e){
@@ -111,6 +135,11 @@ const App = (props) => {
             throw new Error(personEntryAdditionResult.error.message || "SERVER ERROR");
           }
 
+          showNotification({
+            type: "success",
+            message: "NEW PHONEBOOK ENTRY ADDED"
+          },3000);
+
           console.log(`NEW ENTRY ADDED`);
 
         }catch(e){
@@ -134,6 +163,11 @@ const App = (props) => {
           throw new Error(personDeleteResult.error.message || "SERVER ERROR");
         }
 
+        showNotification({
+          type: "success",
+          message: "ENTRY SUCCESSFULLY DELETED"
+        },3000);
+
         populatePersonsData();
 
       }catch(e){
@@ -148,6 +182,7 @@ const App = (props) => {
   return (
     <div>
       <h2 className="App-title">Phonebook</h2>
+      <Notification type={notificationState.type} message={notificationState.message} />
       <PhonebookEntryForm handleOnSubmit={submitNewName} handleNewNameChange={handleNewNameChange} handleNewPhoneNumberChange={handlePhoneNumberChange} />
       <PhonebookListingView ref={phonebookListingRef} onReloadFromServer={populatePersonsData} persons={persons} onDeleteListing={getDeleteFunctionForId} />
     </div>
