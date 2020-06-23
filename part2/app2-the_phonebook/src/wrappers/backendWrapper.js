@@ -5,6 +5,17 @@ const BACKEND_AXIOS = axios.create({
 	baseURL: `http://localhost:3001/persons`
 })
 
+const getErrorStringFromHttpResponseCode = (code) => {
+	let errString = "SERVER ERROR";
+	switch(code){
+		case 404:
+		errString = "RECORD NOT FOUND";
+		break;
+	}
+
+	return errString;
+}
+
 
 const getPersonsData = () => {
 	return new Promise(async(resolve,reject) => {
@@ -130,7 +141,15 @@ const deleteById = (__id) => {
 			resultObj.result = null;
 			if(e.isAxiosError){
 				if(e.response){
-					resultObj.error = e.response.data
+					if(Object.keys(e.response.data).length===0){
+						resultObj.error = {
+							errCode: e.response.status,
+							message: getErrorStringFromHttpResponseCode(e.response.status)
+						}
+
+					} else {
+						resultObj.error = e.response.data;
+					}
 				} else if(e.request){
 					resultObj.error = {
 						message: "NO RESPONSE FROM SERVER"
@@ -182,7 +201,15 @@ const updateById = (__id,__updateObj) => {
 			resultObj.result = null;
 			if(e.isAxiosError){
 				if(e.response){
-					resultObj.error = e.response.data
+					if(Object.keys(e.response.data).length===0){
+						resultObj.error = {
+							errCode: e.response.status,
+							message: getErrorStringFromHttpResponseCode(e.response.status)
+						}
+
+					} else {
+						resultObj.error = e.response.data;
+					}
 				} else if(e.request){
 					resultObj.error = {
 						message: "NO RESPONSE FROM SERVER"

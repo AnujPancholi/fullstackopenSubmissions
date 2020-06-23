@@ -23,8 +23,7 @@ const App = (props) => {
   
 
 
-  //to generate id for each element in a list, so as to not get a warning in the console
-  // const idGenerator = getCounter(persons.length===0 ? -1 : persons[persons.length-1].id);
+  
 
   const phonebookListingRef = useRef(null);
 
@@ -44,7 +43,10 @@ const App = (props) => {
         setPersons(personsDataWrapperResponse.result);
       }catch(e){
         console.error(`ERROR FETCHING DATA FROM SERVER`,e);
-        window.alert("ERROR FETCHING DATA FROM SERVER. CHECK CONSOLE");
+        showNotification({
+              type: "error",
+              message: `ERROR FETCHING DATA: ${e.message || "PROBABALY A SERVER ISSUE"}`
+            },10000);
       }
 
       phonebookListingRef.current.setLoading(false);
@@ -60,7 +62,7 @@ const App = (props) => {
         type: "inactive",
         message: null
       })
-    },__timeout>1999 && __timeout<6000 ? __timeout : 3000);
+    },__timeout>1999 && __timeout<15000 ? __timeout : 3000);
 
   }
 
@@ -102,6 +104,12 @@ const App = (props) => {
               phoneNumber: newPhoneNumber
             })
 
+            if(!updateResult.success){
+              throw new Error(updateResult.error.message || "SERVER ERROR");
+            }
+
+
+
             showNotification({
               type: "success",
               message: "ENTRY UPDATED SUCCESSFULLY"
@@ -111,7 +119,12 @@ const App = (props) => {
 
           }catch(e){
             console.error(`ERROR IN UPDATING PERSON ENTRY - `,e);
-            window.alert(`ERROR IN UPDATING PERSON ENTRY: ${e.message || "PROBABALY A SERVER ISSUE"}`);
+            showNotification({
+              type: "error",
+              message: `ERROR IN UPDATING ENTRY: ${e.message || "PROBABALY A SERVER ISSUE"}`
+            },3000);
+            populatePersonsData();
+            
           }
         }
 
@@ -144,7 +157,10 @@ const App = (props) => {
 
         }catch(e){
           console.error(`ERROR IN MAKING NEW PERSON ENTRY - `,e);
-          window.alert(`ERROR IN MAKING NEW PERSON ENTRY: ${e.message || "PROBABALY A SERVER ISSUE"}`);
+            showNotification({
+              type: "error",
+              message: `ERROR IN MAKING ENTRY: ${e.message || "PROBABALY A SERVER ISSUE"}`
+            },3000);
         }
 
         populatePersonsData();
@@ -160,6 +176,7 @@ const App = (props) => {
       try{
         const personDeleteResult = await backend.deleteById(__id);
         if(!personDeleteResult.success){
+          console.error(personDeleteResult.error);
           throw new Error(personDeleteResult.error.message || "SERVER ERROR");
         }
 
@@ -172,7 +189,12 @@ const App = (props) => {
 
       }catch(e){
         console.error(`ERROR IN DELETING PERSON ENTRY - `,e);
-        window.alert(`ERROR IN DELETING PERSON ENTRY ${e.message || "PROBABALY A SERVER ISSUE"}`);
+        showNotification({
+              type: "error",
+              message: `ERROR IN DELETING ENTRY: ${e.message || "PROBABALY A SERVER ISSUE"}`
+            },3000);
+
+        populatePersonsData();
       }
     })
   }
