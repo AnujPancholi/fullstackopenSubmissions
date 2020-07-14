@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+}
+
+.App-title {
+  /*background-color: #282c34;*/
+  display: flex;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-link {
+  color: #61dafb;
+}
