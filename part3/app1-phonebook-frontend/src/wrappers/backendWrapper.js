@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const BACKEND_AXIOS = axios.create({
-	baseURL: `http://localhost:3001/persons`
+	baseURL: `http://localhost:3001/api/persons`
 })
 
 const getErrorStringFromHttpResponseCode = (code) => {
