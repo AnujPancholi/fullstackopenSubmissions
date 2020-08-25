@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const BACKEND_AXIOS = axios.create({
-	baseURL: `http://localhost:3001/api/persons`
+	baseURL: process.env.REACT_APP_BACKEND_BASE_URL || `http://localhost:3000/api/persons`
 })
 
 const getErrorStringFromHttpResponseCode = (code) => {
