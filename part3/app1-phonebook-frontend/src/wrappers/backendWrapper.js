@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-
+//taking the baseurl from the env variables
 const BACKEND_AXIOS = axios.create({
 	baseURL: process.env.REACT_APP_BACKEND_BASE_URL || `http://localhost:3000/api/persons`
 })
